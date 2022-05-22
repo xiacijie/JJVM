@@ -3,6 +3,9 @@ package org.jjvm;
 import org.apache.commons.cli.*;
 import org.jjvm.cmd.CMD;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) throws ParseException {
         CMD cmd = CMD.parseCommandLineArguments(args);

@@ -14,6 +14,7 @@ public class CMD {
         public static final String HELP_SHORT = "?";
         public static final String VERSION = "version";
         public static final String CLASSPATH_FULL = "classpath";
+        public static final String JRE = "Xjre";
         public static final String CLASSPATH_SHORT = "cp";
     }
 
@@ -21,6 +22,7 @@ public class CMD {
     public boolean versionFlag = false; // print version info
     public String cpOption = "";
     public String klass = "";
+    public String XjreOption = "";
     public ArrayList<String> args = new ArrayList<>();
 
     public static Options getCommandLineOptions() {
@@ -28,6 +30,7 @@ public class CMD {
         options.addOption(JavaCMDOption.HELP_FULL,"print help message");
         options.addOption(JavaCMDOption.HELP_SHORT, "print help message");
         options.addOption(JavaCMDOption.VERSION, "print version and exit");
+        options.addOption(JavaCMDOption.JRE, "path to jre");
         options.addOption(JavaCMDOption.CLASSPATH_FULL, "classpath");
         options.addOption(JavaCMDOption.CLASSPATH_SHORT, "classpath");
         return options;
@@ -55,6 +58,10 @@ public class CMD {
         }
         else if (c.hasOption(JavaCMDOption.CLASSPATH_SHORT)){
             cmd.cpOption = c.getOptionValue(JavaCMDOption.CLASSPATH_SHORT);
+        }
+
+        if (c.hasOption(JavaCMDOption.JRE)) {
+            cmd.XjreOption = c.getOptionValue(JavaCMDOption.JRE);
         }
 
         if(c.getArgs().length > 0) {
