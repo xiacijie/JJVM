@@ -51,13 +51,18 @@ public class CMD {
         cmd.versionFlag = c.hasOption(JavaCMDOption.VERSION);
 
         if (c.hasOption(JavaCMDOption.CLASSPATH_FULL)) {
-            cmd.klass = c.getOptionValue(JavaCMDOption.CLASSPATH_FULL);
+            cmd.cpOption = c.getOptionValue(JavaCMDOption.CLASSPATH_FULL);
         }
         else if (c.hasOption(JavaCMDOption.CLASSPATH_SHORT)){
-            cmd.klass = c.getOptionValue(JavaCMDOption.CLASSPATH_SHORT);
+            cmd.cpOption = c.getOptionValue(JavaCMDOption.CLASSPATH_SHORT);
         }
 
-        cmd.args.addAll(Arrays.asList(c.getArgs()));
+        if(c.getArgs().length > 0) {
+            cmd.klass = c.getArgs()[0];
+            cmd.args.addAll(Arrays.asList(c.getArgs()));
+        }
+
+
         return cmd;
     }
 }
