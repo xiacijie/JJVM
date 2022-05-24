@@ -14,8 +14,8 @@ public class CMD {
         public static final String HELP_SHORT = "?";
         public static final String VERSION = "version";
         public static final String CLASSPATH_FULL = "classpath";
-        public static final String JRE = "Xjre";
         public static final String CLASSPATH_SHORT = "cp";
+        public static final String JRE = "Xjre";
     }
 
     public boolean helpFlag = false; // print help message

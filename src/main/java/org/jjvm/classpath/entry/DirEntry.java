@@ -17,11 +17,16 @@ public class DirEntry implements Entry {
     }
 
     @Override
-    public ReadClassResult readClass(String className) throws IOException {
-        String fileName = Paths.get(absoluteDirPath, className).toString();
+    public ReadClassResult readClass(String className) {
         ReadClassResult result = new ReadClassResult();
-        result.entry = this;
-        result.bytes = Files.readAllBytes(Paths.get(fileName));
+        try {
+            String fileName = Paths.get(absoluteDirPath, className).toString();
+            result.valid = true;
+            result.entry = this;
+            result.bytes = Files.readAllBytes(Paths.get(fileName));
+        } catch (IOException e) {
+            result.valid = false;
+        }
         return result;
     }
 

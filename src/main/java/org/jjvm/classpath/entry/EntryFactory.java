@@ -13,7 +13,7 @@ public class EntryFactory {
             return new WildcardEntry(path);
         }
 
-        if (path.endsWith(".jar") || path.endsWith(".JAR") || path.endsWith(".zip" || path.endsWith(".ZIP"))) {
+        if (path.endsWith(".jar") || path.endsWith(".JAR") || path.endsWith(".zip") || path.endsWith(".ZIP")) {
             return new ZipEntry(path);
         }
 
