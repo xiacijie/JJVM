@@ -69,7 +69,6 @@ public class CMD {
             cmd.args.addAll(Arrays.asList(c.getArgs()));
         }
 
-
         return cmd;
     }
 }

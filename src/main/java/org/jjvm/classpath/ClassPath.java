@@ -63,10 +63,20 @@ public class ClassPath {
     public ReadClassResult readClass(String className) throws IOException {
         className += ".class";
         ReadClassResult result = bootClassPath.readClass(className);
+        if (result.valid) {
+            return result;
+        }
+
+        ReadClassResult result1 = extClassPath.readClass(className);
+        if (result1.valid) {
+            return result;
+        }
+
+        return userClassPath.readClass(className);
     }
 
     public String toString() {
-
+        return userClassPath.toString();
     }
 
 }

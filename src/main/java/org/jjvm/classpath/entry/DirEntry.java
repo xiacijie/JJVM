@@ -21,9 +21,9 @@ public class DirEntry implements Entry {
         ReadClassResult result = new ReadClassResult();
         try {
             String fileName = Paths.get(absoluteDirPath, className).toString();
-            result.valid = true;
-            result.entry = this;
             result.bytes = Files.readAllBytes(Paths.get(fileName));
+            result.entry = this;
+            result.valid = true;
         } catch (IOException e) {
             result.valid = false;
         }

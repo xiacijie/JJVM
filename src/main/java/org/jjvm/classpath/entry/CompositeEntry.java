@@ -16,17 +16,13 @@ public class CompositeEntry implements Entry {
     @Override
     public ReadClassResult readClass(String className) throws IOException {
         for (Entry entry: entries) {
-            try {
-                ReadClassResult result = entry.readClass(className);
+            ReadClassResult result = entry.readClass(className);
+            if (result.valid)
                 return result;
-            }
-            catch (IOException ignored) {
-
-            }
-
         }
-
-        throw new IOException("class name: " + className + " not found!");
+        ReadClassResult result = new ReadClassResult();
+        result.valid = false;
+        return result;
     }
 
     @Override

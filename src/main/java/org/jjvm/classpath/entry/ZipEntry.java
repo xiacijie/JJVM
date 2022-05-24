@@ -20,16 +20,23 @@ public class ZipEntry implements Entry {
     public ReadClassResult readClass(String className) throws IOException {
         ZipFile zipFile = new ZipFile(absoluteZipPath);
         Enumeration<? extends java.util.zip.ZipEntry> entries = zipFile.entries();
+        ReadClassResult result = new ReadClassResult();
         while (entries.hasMoreElements()) {
             java.util.zip.ZipEntry entry = entries.nextElement();
             if (entry.getName().equals(className)) {
-                ReadClassResult result = new ReadClassResult();
-                result.entry = this;
-                result.bytes = zipFile.getInputStream(entry).readAllBytes();
+                try {
+                    result.bytes = zipFile.getInputStream(entry).readAllBytes();
+                    result.entry = this;
+                    result.valid = true;
+                }
+                catch (IOException e) {
+                    result.valid = false;
+                }
                 return result;
             }
         }
-        throw new IOException("class name: " + className + " does not exist!");
+        result.valid = false;
+        return result;
     }
 
     @Override
