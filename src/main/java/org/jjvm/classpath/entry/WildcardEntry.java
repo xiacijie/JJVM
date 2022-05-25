@@ -16,9 +16,23 @@ public class WildcardEntry extends CompositeEntry{
 
     private static ArrayList<String> getPaths(String baseDirPath) throws IOException {
         ArrayList<String> result = new ArrayList<>();
-        Stream<Path> paths = Files.walk(Paths.get(baseDirPath));
-        paths.filter(path -> path.endsWith(".jar") || path.endsWith(".JAR"))
-                .forEach(path -> result.add(path.toString()));
+
+        if (!(new File(baseDirPath)).exists()) {
+            throw new IOException(baseDirPath + " does not exists!");
+        }
+
+        File dir = new File(baseDirPath);
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+          for (File file : directoryListing) {
+                if (file.getName().endsWith(".jar") || file.getName().endsWith(".JAR")) {
+                    result.add(file.getCanonicalPath());
+                }
+          }
+        } else {
+            throw new IOException(baseDirPath + " is not a directory!");
+        }
+
         return result;
     }
 }

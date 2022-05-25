@@ -48,7 +48,7 @@ public class ClassPath {
         }
 
         String javaHome = System.getenv("JAVA_HOME");
-        if (!javaHome.isEmpty()) {
+        if (javaHome != null && !javaHome.isEmpty()) {
             return Paths.get(javaHome, "jre").toString();
         }
 

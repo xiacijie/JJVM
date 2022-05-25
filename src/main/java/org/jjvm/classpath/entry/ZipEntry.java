@@ -8,10 +8,10 @@ import java.util.zip.ZipFile;
 public class ZipEntry implements Entry {
     public String absoluteZipPath;
 
-    public ZipEntry(String relativePath) throws IOException {
-        File f = new File(relativePath);
+    public ZipEntry(String path) throws IOException {
+        File f = new File(path);
         if (! f.exists()) {
-            throw new IOException("path: " + relativePath + " does not exist!");
+            throw new IOException("path: " + path + " does not exist!");
         }
         absoluteZipPath =  f.getCanonicalPath();
     }

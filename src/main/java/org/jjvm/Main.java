@@ -27,7 +27,7 @@ public class Main {
     }
 
     public static void startJVM(CMD cmd) throws IOException {
-        System.out.println("Start JVM ..." + cmd.XjreOption + " " + cmd.cpOption);
+        System.out.println("Start JVM ...");
         ClassPath classPath = ClassPath.parse(cmd.XjreOption, cmd.cpOption);
         System.out.println("classpath: " + classPath.toString() + " class: " + cmd.klass + " args: " + cmd.args);
         String className = cmd.klass.replace(".", "/");

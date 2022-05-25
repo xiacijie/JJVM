@@ -27,12 +27,10 @@ public class CMD {
 
     public static Options getCommandLineOptions() {
         Options options = new Options();
-        options.addOption(JavaCMDOption.HELP_FULL,"print help message");
-        options.addOption(JavaCMDOption.HELP_SHORT, "print help message");
-        options.addOption(JavaCMDOption.VERSION, "print version and exit");
-        options.addOption(JavaCMDOption.JRE, "path to jre");
-        options.addOption(JavaCMDOption.CLASSPATH_FULL, "classpath");
-        options.addOption(JavaCMDOption.CLASSPATH_SHORT, "classpath");
+        options.addOption(JavaCMDOption.HELP_SHORT,JavaCMDOption.HELP_FULL, false,"print help message");
+        options.addOption(JavaCMDOption.VERSION, false, "print version and exit");
+        options.addOption(JavaCMDOption.JRE, true, "path to jre");
+        options.addOption(JavaCMDOption.CLASSPATH_SHORT, JavaCMDOption.CLASSPATH_FULL, true, "classpath");
         return options;
     }
 
