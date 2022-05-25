@@ -32,7 +32,7 @@ public class WildcardEntry extends CompositeEntry{
         } else {
             throw new IOException(baseDirPath + " is not a directory!");
         }
-
+        
         return result;
     }
 }
