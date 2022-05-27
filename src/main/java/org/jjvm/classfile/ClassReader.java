@@ -38,7 +38,7 @@ public class ClassReader {
 
     public short[] readUint16s() {
         short n = readUint16();
-        short[] vals = new short[n];
+        short[] vals = new short[Short.toUnsignedInt(n)];
         for (int i = 0 ; i < n; i ++) {
             vals[i] = readUint16();
         }

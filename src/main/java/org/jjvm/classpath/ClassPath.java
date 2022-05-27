@@ -51,7 +51,7 @@ public class ClassPath {
         if (javaHome != null && !javaHome.isEmpty()) {
             return Paths.get(javaHome, "jre").toString();
         }
-
+            
         throw new IOException("Cannot find jre folder!");
     }
 
