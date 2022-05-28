@@ -5,7 +5,12 @@ import java.nio.ByteOrder;
 
 public class ClassReader {
     private byte[] data;
-    private int nextByteToRead = 0;
+    private int nextByteToRead;
+
+    public ClassReader(byte[] data) {
+        this.data = data;
+        nextByteToRead = 0;
+    }
 
     public byte readUint8() {
         byte val = data[nextByteToRead++];
@@ -33,7 +38,7 @@ public class ClassReader {
         byteBuffer.order(ByteOrder.BIG_ENDIAN);
         byteBuffer.put(data, nextByteToRead, 8);
         nextByteToRead += 8;
-        return byteBuffer.getInt(0);
+        return byteBuffer.getLong(0);
     }
 
     public short[] readUint16s() {

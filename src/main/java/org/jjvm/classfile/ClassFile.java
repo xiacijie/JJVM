@@ -2,6 +2,8 @@ package org.jjvm.classfile;
 
 import java.io.IOException;
 
+import org.jjvm.classfile.constants.ConstantPool;
+
 public class ClassFile {
     public int magic;
     public short minorVersion;
@@ -47,13 +49,14 @@ public class ClassFile {
     private void read(ClassReader classReader) {
         readAndCheckMagic(classReader);
         readAndCheckVersion(classReader);
-        constantPool = readConstantPool(classReader);
+        constantPool = new ConstantPool();
+        constantPool.readConstantPool(classReader);
         accessFlags = classReader.readUint16();
         thisClass = classReader.readUint16();
         superClass = classReader.readUint16();
         interfaces = classReader.readUint16s();
-        fields = readMembers(classReader, constantPool);
-        methods = readMembers(classReader, constantPool);
+        fields = MemberInfo.readMembers(classReader, constantPool);
+        methods = MemberInfo.readMembers(classReader, constantPool);
         attributes = readAttributes(classReader, constantPool);
     }
 
