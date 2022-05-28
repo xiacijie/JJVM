@@ -1,6 +1,11 @@
-package org.jjvm.classfile.constants;
+package org.jjvm.classfile;
 
-import org.jjvm.classfile.ClassReader;
+import org.jjvm.classfile.constants.ConstantClassInfo;
+import org.jjvm.classfile.constants.ConstantDoubleInfo;
+import org.jjvm.classfile.constants.ConstantInfo;
+import org.jjvm.classfile.constants.ConstantLongInfo;
+import org.jjvm.classfile.constants.ConstantNameAndTypeInfo;
+import org.jjvm.classfile.constants.ConstantUtf8Info;
 import org.jjvm.util.Tuple;
 
 public class ConstantPool {

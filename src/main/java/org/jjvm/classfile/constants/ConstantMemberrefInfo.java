@@ -1,6 +1,7 @@
 package org.jjvm.classfile.constants;
 
 import org.jjvm.classfile.ClassReader;
+import org.jjvm.classfile.ConstantPool;
 import org.jjvm.util.Tuple;
 
 public class ConstantMemberrefInfo implements ConstantInfo {

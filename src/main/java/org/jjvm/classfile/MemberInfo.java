@@ -1,7 +1,5 @@
 package org.jjvm.classfile;
 
-import org.jjvm.classfile.constants.ConstantPool;
-
 public class MemberInfo {
     public ConstantPool constantPool;
     public short accessFlags;

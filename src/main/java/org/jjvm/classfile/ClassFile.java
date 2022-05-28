@@ -2,8 +2,6 @@ package org.jjvm.classfile;
 
 import java.io.IOException;
 
-import org.jjvm.classfile.constants.ConstantPool;
-
 public class ClassFile {
     public int magic;
     public short minorVersion;
