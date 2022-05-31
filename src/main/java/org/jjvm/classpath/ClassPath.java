@@ -23,10 +23,9 @@ public class ClassPath {
 
     private void parseBootAndExtClassPath(String jreOption) throws IOException {
         String jreDir = getJreDir(jreOption);
-        String jreLibPath = Paths.get(jreDir, "lib", "*").toString();
+        String jreLibPath = jreDir + File.separator + "lib" + File.separator + "*";
         bootClassPath = new WildcardEntry(jreLibPath);
-
-        String jreExtPath = Paths.get(jreDir, "lib", "ext", "*").toString();
+        String jreExtPath = jreDir + File.separator + "ext" + File.separator + "*";
         extClassPath = new WildcardEntry(jreExtPath);
     }
 
