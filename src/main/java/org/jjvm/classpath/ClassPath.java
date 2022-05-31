@@ -25,7 +25,7 @@ public class ClassPath {
         String jreDir = getJreDir(jreOption);
         String jreLibPath = jreDir + File.separator + "lib" + File.separator + "*";
         bootClassPath = new WildcardEntry(jreLibPath);
-        String jreExtPath = jreDir + File.separator + "ext" + File.separator + "*";
+        String jreExtPath = jreDir + File.separator + "lib" + File.separator + "ext" + File.separator + "*";
         extClassPath = new WildcardEntry(jreExtPath);
     }
 
@@ -38,7 +38,7 @@ public class ClassPath {
     }
 
     private String getJreDir(String jreOption) throws IOException {
-        if (! jreOption.isEmpty() && exists(jreOption)) {
+        if (jreOption != null && exists(jreOption)) {
             return jreOption;
         }
 
@@ -68,7 +68,7 @@ public class ClassPath {
 
         ReadClassResult result1 = extClassPath.readClass(className);
         if (result1.valid) {
-            return result;
+            return result1;
         }
 
         return userClassPath.readClass(className);
