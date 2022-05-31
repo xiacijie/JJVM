@@ -4,9 +4,9 @@ import org.jjvm.classfile.ClassReader;
 import org.jjvm.classfile.ConstantPool;
 
 public interface AttributeInfo {
-    public void readInfo(ClassReader classReader);
+    public void readInfo(ClassReader classReader) throws Exception;
 
-    static public AttributeInfo[] readAttributes(ClassReader classReader, ConstantPool constantPool) {
+    static public AttributeInfo[] readAttributes(ClassReader classReader, ConstantPool constantPool) throws Exception {
         int attributesCount = Short.toUnsignedInt(classReader.readUint16());
         AttributeInfo[] attributes = new AttributeInfo[attributesCount];
         for (int i = 0; i < attributesCount; i ++) {
@@ -39,11 +39,11 @@ public interface AttributeInfo {
             case "LocalVariableTable":
                 return new LocalVariableTableAttribute();
             case "SourceFile":
-                return new SourceFileAttribute();
+                return new SourceFileAttribute(constantPool);
             case "Synthetic":
                 return new SyntheticAttribute();
             default:
-                return UnparsedAttribute(attrName, attrLen, null);
+                return new UnparsedAttribute(attrName, attrLen);
         }
     }
 }
