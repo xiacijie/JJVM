@@ -11,6 +11,10 @@ import org.jjvm.util.Tuple;
 public class ConstantPool {
     
     private ConstantInfo[] constantInfos;
+
+    public int size() {
+        return constantInfos.length;
+    }
     
     public void readConstantPool(ClassReader classReader) throws Exception {
         int constantPoolCount = Short.toUnsignedInt(classReader.readUint16());

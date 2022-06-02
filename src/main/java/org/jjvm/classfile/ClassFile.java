@@ -5,14 +5,14 @@ import org.jjvm.classfile.attributes.AttributeInfo;
 import java.io.IOException;
 
 public class ClassFile {
-    public int magic;
-    public short minorVersion;
-    public short majorVersion;
+    public long magic;
+    public int minorVersion;
+    public int majorVersion;
     public ConstantPool constantPool;
-    public short accessFlags;
-    public short thisClass;
-    public short superClass;
-    public short[] interfaces;
+    public int accessFlags;
+    public int thisClass;
+    public int superClass;
+    public int[] interfaces;
     public MemberInfo[] fields;
     public MemberInfo[] methods;
     public AttributeInfo[] attributes;
@@ -39,7 +39,7 @@ public class ClassFile {
     public String[] getInterfaceNames() throws Exception {
         String[] interfaceNames = new String[interfaces.length];
         for (int i = 0; i < interfaces.length; i ++) {
-            short cpIndex = interfaces[i];
+            int cpIndex = interfaces[i];
             interfaceNames[i] = constantPool.getClassName(cpIndex);
         }
 
@@ -51,25 +51,31 @@ public class ClassFile {
         readAndCheckVersion(classReader);
         constantPool = new ConstantPool();
         constantPool.readConstantPool(classReader);
-        accessFlags = classReader.readUint16();
-        thisClass = classReader.readUint16();
-        superClass = classReader.readUint16();
-        interfaces = classReader.readUint16s();
+        accessFlags = Short.toUnsignedInt(classReader.readUint16());
+        thisClass = Short.toUnsignedInt(classReader.readUint16());
+        superClass = Short.toUnsignedInt(classReader.readUint16());
+        short[] interfaces_shorts = classReader.readUint16s();
+        interfaces = new int[interfaces_shorts.length];
+        for (int i = 0; i < interfaces_shorts.length; i ++) {
+            interfaces[i] = Short.toUnsignedInt(interfaces_shorts[i]);
+        }
+
         fields = MemberInfo.readMembers(classReader, constantPool);
         methods = MemberInfo.readMembers(classReader, constantPool);
         attributes = AttributeInfo.readAttributes(classReader, constantPool);
     }
 
     private void readAndCheckMagic(ClassReader classReader) throws Exception {
-        magic = classReader.readUint32();
-        if (magic != 0xCAFEBABE) {
+        magic = Integer.toUnsignedLong(classReader.readUint32());
+  
+        if (magic != Long.parseLong("CAFEBABE", 16)) {
             throw new Exception("java.lang.ClassFormatError: magic!");
         }
     }
 
     private void readAndCheckVersion(ClassReader classReader) throws Exception {
-        minorVersion = classReader.readUint16();
-        majorVersion = classReader.readUint16();
+        minorVersion = Short.toUnsignedInt(classReader.readUint16());
+        majorVersion = Short.toUnsignedInt(classReader.readUint16());
         switch (majorVersion) {
             case 45:
                 return;

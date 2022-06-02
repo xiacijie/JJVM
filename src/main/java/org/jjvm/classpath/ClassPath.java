@@ -59,7 +59,7 @@ public class ClassPath {
         return file.exists();
     }
 
-    public ReadClassResult readClass(String className) throws IOException {
+    public ReadClassResult readClass(String className) {
         className += ".class";
         ReadClassResult result = bootClassPath.readClass(className);
         if (result.valid) {

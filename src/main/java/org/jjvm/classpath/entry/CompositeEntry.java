@@ -14,7 +14,7 @@ public class CompositeEntry implements Entry {
     }
 
     @Override
-    public ReadClassResult readClass(String className) throws IOException {
+    public ReadClassResult readClass(String className) {
         for (Entry entry: entries) {
             ReadClassResult result = entry.readClass(className);
             if (result.valid)
