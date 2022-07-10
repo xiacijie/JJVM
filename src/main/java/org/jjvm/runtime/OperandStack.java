@@ -72,4 +72,14 @@ public class OperandStack {
         slots[next].ref = null;
         return ref;
     }
+
+    public void pushSlot(Slot slot) {
+        slots[next] = slot;
+        next++;
+    }
+
+    public Slot popSlot() {
+        next--;
+        return slots[next];
+    }
 }
