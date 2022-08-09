@@ -4,7 +4,7 @@ import org.jjvm.instruction.NoOpInstruction;
 import org.jjvm.runtime.Frame;
 import org.jjvm.runtime.OperandStack;
 
-public class ISHL extends NoOpInstruction {
+public class IUSHR extends NoOpInstruction{
 
     @Override
     public void execute(Frame frame) {
@@ -12,7 +12,7 @@ public class ISHL extends NoOpInstruction {
         int v2 = stack.popInt();
         int v1 = stack.popInt();
         int s = v2 & 0x1f;
-        int result = v1 << s;
+        int result = v1 >>> s;
         stack.pushInt(result);
     }
     
