@@ -1,4 +1,4 @@
-package org.jjvm.instruction.math;
+package org.jjvm.instruction.rem;
 
 import org.jjvm.instruction.NoOpInstruction;
 import org.jjvm.runtime.Frame;

@@ -1,18 +1,18 @@
-package org.jjvm.instruction.math;
+package org.jjvm.instruction.div;
 
 import org.jjvm.instruction.NoOpInstruction;
 import org.jjvm.runtime.Frame;
 import org.jjvm.runtime.OperandStack;
 
-public class IAND extends NoOpInstruction{
+public class FDIV extends NoOpInstruction{
 
     @Override
     public void execute(Frame frame) {
         OperandStack stack = frame.operandStack;
-        int v2 = stack.popInt();
-        int v1 = stack.popInt();
-        int result = v1 & v2;
-        stack.pushInt(result);
+        float v2 = stack.popFloat();
+        float v1 = stack.popFloat();
+        float result = v1 / v2;
+        stack.pushFloat(result);
     }
     
 }

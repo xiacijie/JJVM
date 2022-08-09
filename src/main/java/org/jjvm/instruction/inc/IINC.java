@@ -1,4 +1,4 @@
-package org.jjvm.instruction.math;
+package org.jjvm.instruction.inc;
 
 import org.jjvm.instruction.Instruction;
 import org.jjvm.instruction.base.BytecodeReader;

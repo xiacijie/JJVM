@@ -1,20 +1,18 @@
-package org.jjvm.instruction.math;
+package org.jjvm.instruction.or;
 
 import org.jjvm.instruction.NoOpInstruction;
 import org.jjvm.runtime.Frame;
 import org.jjvm.runtime.OperandStack;
 
-public class LSHR extends NoOpInstruction {
+public class LOR extends NoOpInstruction {
 
     @Override
     public void execute(Frame frame) {
         OperandStack stack = frame.operandStack;
-        int v2 = stack.popInt();
+        long v2 = stack.popLong();
         long v1 = stack.popLong();
-        int s = v2 & 0x3f;
-        long result = v1 >> s;
+        long result = v1 | v2;
         stack.pushLong(result);
-        
     }
     
 }
