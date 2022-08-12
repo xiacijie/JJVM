@@ -1,19 +1,17 @@
 package org.jjvm.instruction.branch;
 
-import javax.swing.text.AbstractDocument.BranchElement;
-
 import org.jjvm.instruction.BranchInstruction;
-import org.jjvm.instruction.NoOpInstruction;
 import org.jjvm.runtime.Frame;
 
-public class IFLT extends BranchInstruction {
+public class IF_GE extends BranchInstruction {
 
     @Override
     public void execute(Frame frame) {
         int value = frame.operandStack.popInt();
-        if (value < 0) {
+        if (value >= 0) {
             frame.branch(offset);
         }
+        
     }
     
 }

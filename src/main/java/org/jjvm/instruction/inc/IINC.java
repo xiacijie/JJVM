@@ -6,8 +6,8 @@ import org.jjvm.runtime.Frame;
 import org.jjvm.runtime.LocalVars;
 
 public class IINC implements Instruction {
-    private int index;
-    private int constant;
+    public int index;
+    public int constant;
 
     @Override
     public void fetchOperands(BytecodeReader reader) {

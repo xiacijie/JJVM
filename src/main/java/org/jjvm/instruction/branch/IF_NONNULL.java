@@ -3,14 +3,15 @@ package org.jjvm.instruction.branch;
 import org.jjvm.instruction.BranchInstruction;
 import org.jjvm.runtime.Frame;
 
-public class IFNE extends BranchInstruction {
+public class IF_NONNULL extends BranchInstruction {
 
     @Override
     public void execute(Frame frame) {
-        int value = frame.operandStack.popInt();
-        if (value != 0) {
+        Object ref = frame.operandStack.popRef();
+        if (ref != null) {
             frame.branch(offset);
         }
+        
     }
     
 }

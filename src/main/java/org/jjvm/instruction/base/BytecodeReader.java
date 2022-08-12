@@ -38,5 +38,19 @@ public class BytecodeReader {
         return (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
     }
 
+    public int[] readInt32s(int n) {
+        int[] values = new int[n];
+        for (int i = 0; i < n; i++) {
+            values[i] = readInt32();
+        }
+        return values;
+    }
+
+    public void skipPadding() {
+        while (pc % 4 != 0) {
+            readUint8();
+        }
+    }
+
     
 }
