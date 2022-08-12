@@ -1,8 +1,8 @@
 package org.jjvm.instruction.base;
 
 public class BytecodeReader {
-    private int pc;
-    private byte[] code;
+    public int pc;
+    public byte[] code;
 
     public void reset(byte[] code, int pc) {
         this.code = code;
