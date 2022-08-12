@@ -5,15 +5,23 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.zip.ZipFile;
 
+import org.jjvm.exception.JJException;
+
 public class ZipEntry implements Entry {
     public String absoluteZipPath;
 
-    public ZipEntry(String path) throws IOException {
+    public ZipEntry(String path)  {
         File f = new File(path);
         if (! f.exists()) {
-            throw new IOException("path: " + path + " does not exist!");
+            JJException.throwException("path: " + path + " does not exist!");
         }
-        absoluteZipPath =  f.getCanonicalPath();
+        try {
+            absoluteZipPath =  f.getCanonicalPath();
+        }
+        catch (Exception e) {
+            JJException.throwException(e.getMessage());
+        }
+        
     }
 
     @Override

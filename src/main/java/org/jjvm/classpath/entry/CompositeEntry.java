@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class CompositeEntry implements Entry {
     public ArrayList<Entry> entries = new ArrayList<>();
 
-    public CompositeEntry(String pathList) throws IOException {
+    public CompositeEntry(String pathList)  {
         for (String path : pathList.split(File.pathSeparator)) {
             entries.add(EntryFactory.create(path));
         }

@@ -1,6 +1,7 @@
 package org.jjvm.classfile;
 
 import org.jjvm.classfile.attributes.AttributeInfo;
+import org.jjvm.classfile.attributes.CodeAttribute;
 
 public class MemberInfo {
     public ConstantPool constantPool;
@@ -9,15 +10,26 @@ public class MemberInfo {
     public short descriptorIndex;
     public AttributeInfo[] attributes;
 
-    public String getName() throws Exception {
+    public String getName()  {
         return constantPool.getUtf8(nameIndex);
     }
 
-    public String getDescriptor() throws Exception {
+    public String getDescriptor()  {
         return constantPool.getUtf8(descriptorIndex);
     }
 
-    static public MemberInfo[] readMembers(ClassReader classReader, ConstantPool constantPool) throws Exception {
+    public CodeAttribute getCodeAttribute() {
+        for (AttributeInfo attr : attributes) {
+            if (attr instanceof CodeAttribute) {
+                return (CodeAttribute)attr;
+            }
+        }
+        // System.out.println("Does not find code attribute!");
+        // System.exit(1);
+        return null;
+    }
+
+    static public MemberInfo[] readMembers(ClassReader classReader, ConstantPool constantPool)  {
         int memberCount = Short.toUnsignedInt(classReader.readUint16());
         MemberInfo[] members = new MemberInfo[memberCount];
         for (int i = 0; i < memberCount; i ++) {
@@ -26,7 +38,7 @@ public class MemberInfo {
         return members;
     }
 
-    static public MemberInfo readMember(ClassReader classReader, ConstantPool constantPool) throws Exception {
+    static public MemberInfo readMember(ClassReader classReader, ConstantPool constantPool)  {
         MemberInfo member = new MemberInfo();
         member.constantPool = constantPool;
         member.accessFlags = classReader.readUint16();
@@ -35,4 +47,6 @@ public class MemberInfo {
         member.attributes = AttributeInfo.readAttributes(classReader, constantPool);
         return member;
     }
+
+
 }

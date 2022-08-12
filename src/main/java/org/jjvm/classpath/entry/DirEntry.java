@@ -5,15 +5,23 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.jjvm.exception.JJException;
+
 public class DirEntry implements Entry {
     public String absoluteDirPath;
 
-    public DirEntry(String relativePath) throws IOException {
+    public DirEntry(String relativePath)  {
         File f = new File(relativePath);
         if (! f.exists()) {
-            throw new IOException("path: " + relativePath + " does not exist!");
+            JJException.throwException("path: " + relativePath + " does not exist!");
         }
-        absoluteDirPath =  f.getCanonicalPath();
+        try {
+            absoluteDirPath =  f.getCanonicalPath();
+        }
+        catch (Exception e) {
+            JJException.throwException(e.getMessage());
+        }
+        
     }
 
     @Override

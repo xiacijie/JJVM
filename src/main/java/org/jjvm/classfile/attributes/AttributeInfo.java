@@ -4,9 +4,9 @@ import org.jjvm.classfile.ClassReader;
 import org.jjvm.classfile.ConstantPool;
 
 public interface AttributeInfo {
-    public void readInfo(ClassReader classReader) throws Exception;
+    public void readInfo(ClassReader classReader) ;
 
-    static public AttributeInfo[] readAttributes(ClassReader classReader, ConstantPool constantPool) throws Exception {
+    static public AttributeInfo[] readAttributes(ClassReader classReader, ConstantPool constantPool)  {
         int attributesCount = Short.toUnsignedInt(classReader.readUint16());
         AttributeInfo[] attributes = new AttributeInfo[attributesCount];
         for (int i = 0; i < attributesCount; i ++) {
@@ -15,7 +15,7 @@ public interface AttributeInfo {
         return attributes;
     }
 
-    static public AttributeInfo readAttribute(ClassReader classReader, ConstantPool constantPool) throws Exception {
+    static public AttributeInfo readAttribute(ClassReader classReader, ConstantPool constantPool)  {
         int attrNameIndex = Short.toUnsignedInt(classReader.readUint16());
         String attrName = constantPool.getUtf8(attrNameIndex);
         long attrLen = Integer.toUnsignedLong(classReader.readUint32());

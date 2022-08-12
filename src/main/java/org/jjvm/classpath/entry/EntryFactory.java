@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class EntryFactory {
-    static public Entry create(String path) throws IOException {
+    static public Entry create(String path)  {
         if (path.contains(File.pathSeparator)) {
             return new CompositeEntry(path);
         }

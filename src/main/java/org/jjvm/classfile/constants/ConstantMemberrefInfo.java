@@ -19,11 +19,11 @@ public class ConstantMemberrefInfo implements ConstantInfo {
         nameAndTypeIndex = Short.toUnsignedInt(classReader.readUint16());
     }
 
-    public String getClassName() throws Exception {
+    public String getClassName()  {
         return constantPool.getClassName(classIndex);
     }
 
-    public Tuple<String, String> getNameAndDescriptor() throws Exception {
+    public Tuple<String, String> getNameAndDescriptor()  {
         return constantPool.getNameAndType(nameAndTypeIndex);
     }
     

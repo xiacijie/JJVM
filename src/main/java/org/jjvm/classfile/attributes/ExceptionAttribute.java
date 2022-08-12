@@ -7,7 +7,7 @@ public class ExceptionAttribute implements AttributeInfo {
     private int[] exceptionIndexTable;
 
     @Override
-    public void readInfo(ClassReader classReader) throws Exception {
+    public void readInfo(ClassReader classReader)  {
         short[] shorts = classReader.readUint16s();
         exceptionIndexTable = new int[shorts.length];
         for (int i = 0; i < shorts.length; i ++) {

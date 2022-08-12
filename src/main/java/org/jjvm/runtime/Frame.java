@@ -7,7 +7,7 @@ public class Frame {
     public Thread thread;
     public int nextPC;
 
-    public Frame(int maxLocals, int maxStack) throws Exception {
+    public Frame(int maxLocals, int maxStack)  {
         localVars = new LocalVars(maxLocals);
         operandStack = new OperandStack(maxStack);
         thread = new Thread();

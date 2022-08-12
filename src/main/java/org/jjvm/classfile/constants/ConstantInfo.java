@@ -2,18 +2,19 @@ package org.jjvm.classfile.constants;
 
 import org.jjvm.classfile.ClassReader;
 import org.jjvm.classfile.ConstantPool;
+import org.jjvm.exception.JJException;
 
 public interface ConstantInfo {
     public void readInfo(ClassReader classReader);
 
-    static public ConstantInfo readConstantInfo(ClassReader classReader, ConstantPool constantPool) throws Exception {
+    static public ConstantInfo readConstantInfo(ClassReader classReader, ConstantPool constantPool)  {
         int tag = Byte.toUnsignedInt(classReader.readUint8());
         ConstantInfo constantInfo = newConstantInfo(tag, constantPool);
         constantInfo.readInfo(classReader);
         return constantInfo;
     }
 
-    static public ConstantInfo newConstantInfo(int tag, ConstantPool constantPool) throws Exception {
+    static public ConstantInfo newConstantInfo(int tag, ConstantPool constantPool)  {
         switch (tag) {
             case ConstantTag.CONSTANT_Integer:
                 return new ConstantIntegerInfo();
@@ -43,9 +44,12 @@ public interface ConstantInfo {
                 // return new ConstantMethodHandleInfo();
             case ConstantTag.CONSTANT_InvokeDynamic:
                 // return new ConstantInvokeDynamicInfo();
-                throw new Exception("invoke dynamic not supported yet!");
+                JJException.throwException("invoke dynamic not supported yet!");
             default:
-                throw new Exception("java.lang.ClassFormatError: constant pool tag!");
+                JJException.throwException("java.lang.ClassFormatError: constant pool tag!");
             }
-    }
+    
+    return null;
 }
+}
+

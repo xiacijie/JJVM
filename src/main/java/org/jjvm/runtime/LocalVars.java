@@ -1,11 +1,13 @@
 package org.jjvm.runtime;
 
+import org.jjvm.exception.JJException;
+
 public class LocalVars {
     private Slot[] slots;
 
-    public LocalVars(int maxLocals) throws Exception {
+    public LocalVars(int maxLocals)  {
         if (maxLocals <= 0) {
-            throw new Exception("max locals must be great than 0!");
+            JJException.throwException("max locals must be great than 0!");
         }
 
         slots = new Slot[maxLocals];

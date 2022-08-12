@@ -12,11 +12,11 @@ public class SourceFileAttribute implements AttributeInfo {
     }
 
     @Override
-    public void readInfo(ClassReader classReader) throws Exception {
+    public void readInfo(ClassReader classReader)  {
         sourceFileIndex = Short.toUnsignedInt(classReader.readUint16());
     }
 
-    public  String getFileName() throws Exception {
+    public  String getFileName()  {
         return constantPool.getUtf8(sourceFileIndex);
     }
 }

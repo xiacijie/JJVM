@@ -18,11 +18,11 @@ public class ConstantNameAndTypeInfo implements ConstantInfo {
         descriptorIndex = Short.toUnsignedInt(classReader.readUint16());        
     }
 
-    public String getName() throws Exception {
+    public String getName()  {
         return constantPool.getUtf8(nameIndex);
     }
 
-    public String getDescriptor() throws Exception {
+    public String getDescriptor()  {
         return constantPool.getUtf8(descriptorIndex);
     }
 }

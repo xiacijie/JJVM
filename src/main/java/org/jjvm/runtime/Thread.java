@@ -9,15 +9,15 @@ public class Thread {
         pc = 0;
     }
 
-    public void pushFrame(Frame frame) throws Exception {
+    public void pushFrame(Frame frame)  {
         stack.push(frame);
     }
 
-    public Frame popFrame() throws Exception {
+    public Frame popFrame()  {
         return stack.pop();
     }
 
-    public Frame currentFrame() throws Exception {
+    public Frame currentFrame()  {
         return stack.top();
     }
 }

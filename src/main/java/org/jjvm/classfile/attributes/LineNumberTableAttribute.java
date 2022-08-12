@@ -6,7 +6,7 @@ public class LineNumberTableAttribute implements AttributeInfo {
     private LineNumberTableEntry[] lineNumberTable;
 
     @Override
-    public void readInfo(ClassReader classReader) throws Exception {
+    public void readInfo(ClassReader classReader)  {
         int lineNumberTableLength = Short.toUnsignedInt(classReader.readUint16());
         lineNumberTable = new LineNumberTableEntry[lineNumberTableLength];
         for (int i = 0; i < lineNumberTableLength; i ++) {

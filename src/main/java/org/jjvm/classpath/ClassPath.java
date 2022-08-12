@@ -4,6 +4,7 @@ import org.jjvm.classpath.entry.Entry;
 import org.jjvm.classpath.entry.EntryFactory;
 import org.jjvm.classpath.entry.ReadClassResult;
 import org.jjvm.classpath.entry.WildcardEntry;
+import org.jjvm.exception.JJException;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,14 +15,14 @@ public class ClassPath {
     public Entry extClassPath;
     public Entry userClassPath;
 
-    public static ClassPath parse(String jreOption, String cpOption) throws IOException {
+    public static ClassPath parse(String jreOption, String cpOption)  {
         ClassPath classPath = new ClassPath();
         classPath.parseBootAndExtClassPath(jreOption);
         classPath.parseUserClassPath(cpOption);
         return classPath;
     }
 
-    private void parseBootAndExtClassPath(String jreOption) throws IOException {
+    private void parseBootAndExtClassPath(String jreOption)  {
         String jreDir = getJreDir(jreOption);
         String jreLibPath = jreDir + File.separator + "lib" + File.separator + "*";
         bootClassPath = new WildcardEntry(jreLibPath);
@@ -29,7 +30,7 @@ public class ClassPath {
         extClassPath = new WildcardEntry(jreExtPath);
     }
 
-    private void parseUserClassPath(String cpOption) throws IOException {
+    private void parseUserClassPath(String cpOption)  {
         if (cpOption.isEmpty()) {
             cpOption = ".";
         }
@@ -37,7 +38,7 @@ public class ClassPath {
         userClassPath = EntryFactory.create(cpOption);
     }
 
-    private String getJreDir(String jreOption) throws IOException {
+    private String getJreDir(String jreOption)  {
         if (jreOption != null && exists(jreOption)) {
             return jreOption;
         }
@@ -50,8 +51,8 @@ public class ClassPath {
         if (javaHome != null && !javaHome.isEmpty()) {
             return Paths.get(javaHome, "jre").toString();
         }
-            
-        throw new IOException("Cannot find jre folder!");
+        JJException.throwException("Cannot find jre folder!");
+        return null;
     }
 
     private Boolean exists(String path) {

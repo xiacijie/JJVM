@@ -1,5 +1,7 @@
 package org.jjvm.runtime;
 
+import org.jjvm.exception.JJException;
+
 public class Stack {
     public int maxSize;
     public int size;
@@ -11,9 +13,9 @@ public class Stack {
         top = null;
     }
 
-    public void push(Frame frame) throws Exception{
+    public void push(Frame frame) {
         if (size > maxSize) {
-            throw new Exception("java.lang.StackOverflowError");
+            JJException.throwException("java.lang.StackOverflowError");
         }
 
         if (top != null) {
@@ -24,9 +26,9 @@ public class Stack {
         size++;
     }
 
-    public Frame pop() throws Exception {
+    public Frame pop()  {
         if (top == null) {
-            throw new Exception("JVM stack is empty!");
+            JJException.throwException("JVM stack is empty!");
         }
 
         Frame currTop = top;
@@ -36,9 +38,9 @@ public class Stack {
         return currTop;
     }
 
-    public Frame top() throws Exception{
+    public Frame top() {
         if (top == null) {
-            throw new Exception("JVM Stack is empty!");
+            JJException.throwException("JVM Stack is empty!");
         }
 
         return top;

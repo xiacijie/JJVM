@@ -7,9 +7,10 @@ import org.jjvm.classfile.MemberInfo;
 import org.jjvm.classpath.ClassPath;
 import org.jjvm.classpath.entry.ReadClassResult;
 import org.jjvm.cmd.CMD;
+import org.jjvm.exception.JJException;
 
 public class TestClassFile {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
         CMD cmd = CMD.parseCommandLineArguments(args);
         if (cmd.versionFlag) {
             System.out.println("version 0.0.1");
@@ -22,7 +23,7 @@ public class TestClassFile {
         }
     }
 
-    private static void startJVM(CMD cmd) throws Exception {
+    private static void startJVM(CMD cmd)  {
         System.out.println("Start JVM ...");
         ClassPath classPath = ClassPath.parse(cmd.XjreOption, cmd.cpOption);
         String className = cmd.klass.replace(".", "/");
@@ -31,17 +32,17 @@ public class TestClassFile {
         printClassInfo(classFile);
     }
 
-    private static ClassFile loadClass(String className, ClassPath classPath) throws Exception {
+    private static ClassFile loadClass(String className, ClassPath classPath)  {
         ReadClassResult readClassResult = classPath.readClass(className);
         if (!readClassResult.valid) {
-            throw new IOException("load class invalid result!");
+            JJException.throwException("load class invalid result!");
         }
 
         ClassFile classFile = ClassFile.parse(readClassResult.bytes);
         return classFile;
     }
 
-    private static void printClassInfo(ClassFile classFile) throws Exception {
+    private static void printClassInfo(ClassFile classFile)  {
         System.out.println("version: " + classFile.majorVersion + "." + classFile.minorVersion);
         System.out.println("constants count: " + classFile.constantPool.size());
         System.out.println("this class: " + classFile.getClassName());

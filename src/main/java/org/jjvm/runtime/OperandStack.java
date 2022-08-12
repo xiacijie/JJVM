@@ -1,12 +1,14 @@
 package org.jjvm.runtime;
 
+import org.jjvm.exception.JJException;
+
 public class OperandStack {
     private int next;
     private Slot[] slots;
 
-    public OperandStack(int maxStack) throws Exception {
+    public OperandStack(int maxStack)  {
         if (maxStack <= 0) {
-            throw new Exception("max Stack must be greater than 0!");
+            JJException.throwException("max Stack must be greater than 0!");
         }
 
         next = 0;

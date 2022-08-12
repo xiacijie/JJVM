@@ -1,6 +1,7 @@
 package org.jjvm.cmd;
 
 import org.apache.commons.cli.*;
+import org.jjvm.exception.JJException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,11 +42,19 @@ public class CMD {
         formatter.printHelp("jjava", header, getCommandLineOptions(), footer, true);
     }
 
-    public static CMD parseCommandLineArguments(String[] args) throws ParseException {
+    public static CMD parseCommandLineArguments(String[] args){
         Options options = getCommandLineOptions();
 
         CommandLineParser parser = new DefaultParser();
-        CommandLine c = parser.parse(options, args);
+        CommandLine c = null;
+        
+        try {
+            c = parser.parse(options, args);
+        }
+        catch (Exception e) {
+            JJException.throwException(e.getMessage());
+        }
+        
 
         CMD cmd = new CMD();
         cmd.helpFlag = c.hasOption(JavaCMDOption.HELP_FULL) || c.hasOption(JavaCMDOption.HELP_SHORT);

@@ -16,7 +16,7 @@ public class ConstantStringInfo implements ConstantInfo {
         stringIndex = Short.toUnsignedInt(classReader.readUint16());
     }
 
-    public String getString() throws Exception {
+    public String getString()  {
         return constantPool.getUtf8(stringIndex);
     }
     

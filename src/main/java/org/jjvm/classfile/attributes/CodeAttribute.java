@@ -2,6 +2,7 @@ package org.jjvm.classfile.attributes;
 
 import org.jjvm.classfile.ClassReader;
 import org.jjvm.classfile.ConstantPool;
+import org.jjvm.exception.JJException;
 
 public class CodeAttribute implements AttributeInfo {
     private final ConstantPool constantPool;
@@ -16,12 +17,12 @@ public class CodeAttribute implements AttributeInfo {
     }
 
     @Override
-    public void readInfo(ClassReader classReader) throws Exception {
+    public void readInfo(ClassReader classReader)  {
         maxStack = Short.toUnsignedInt(classReader.readUint16());
         maxLocals = Short.toUnsignedInt(classReader.readUint16());
         long codeLength = Integer.toUnsignedLong(classReader.readUint32());
         if (codeLength > Integer.MAX_VALUE) {
-            throw new Exception("length " + codeLength + " too long!");
+            JJException.throwException("length " + codeLength + " too long!");
         }
 
         int intCodeLength = (int)codeLength;

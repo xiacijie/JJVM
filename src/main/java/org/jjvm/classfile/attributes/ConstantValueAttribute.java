@@ -6,7 +6,7 @@ public class ConstantValueAttribute implements AttributeInfo {
     private int constantValueIndex;
 
     @Override
-    public void readInfo(ClassReader classReader) throws Exception {
+    public void readInfo(ClassReader classReader)  {
         constantValueIndex = Short.toUnsignedInt(classReader.readUint16());
     }
 

@@ -15,11 +15,11 @@ import java.util.Arrays;
 
 
 public class TestRuntime {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
        startJVM(null);
     }
 
-    private static void startJVM(CMD cmd) throws Exception {
+    private static void startJVM(CMD cmd)  {
         Frame frame = new Frame(100, 100);
         testLocalVars(frame.localVars);
         testOperandStack(frame.operandStack);

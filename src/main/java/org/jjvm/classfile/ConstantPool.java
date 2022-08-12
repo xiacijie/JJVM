@@ -6,6 +6,7 @@ import org.jjvm.classfile.constants.ConstantInfo;
 import org.jjvm.classfile.constants.ConstantLongInfo;
 import org.jjvm.classfile.constants.ConstantNameAndTypeInfo;
 import org.jjvm.classfile.constants.ConstantUtf8Info;
+import org.jjvm.exception.JJException;
 import org.jjvm.util.Tuple;
 
 public class ConstantPool {
@@ -16,7 +17,7 @@ public class ConstantPool {
         return constantInfos.length;
     }
     
-    public void readConstantPool(ClassReader classReader) throws Exception {
+    public void readConstantPool(ClassReader classReader)  {
         int constantPoolCount = Short.toUnsignedInt(classReader.readUint16());
         this.constantInfos = new ConstantInfo[constantPoolCount];
         for (int i = 1; i < constantPoolCount; i ++) {
@@ -28,26 +29,26 @@ public class ConstantPool {
         }
     }
 
-    public ConstantInfo getConstantInfo(int index) throws Exception {
+    public ConstantInfo getConstantInfo(int index) {
         ConstantInfo constantInfo = constantInfos[index];
         if (constantInfo != null) {
             return constantInfo;
         }
-
-        throw new Exception("Invalid constant pool index!");
+        JJException.throwException("Invalid constant pool index!");
+        return null;
     }
 
-    public Tuple<String,String> getNameAndType(int index) throws Exception {
+    public Tuple<String,String> getNameAndType(int index)  {
         ConstantNameAndTypeInfo ntInfo = (ConstantNameAndTypeInfo)getConstantInfo(index);
         return new Tuple<String,String>(ntInfo.getName(), ntInfo.getDescriptor());
     }
 
-    public String getClassName(int index) throws Exception {
+    public String getClassName(int index)  {
         ConstantClassInfo classInfo = (ConstantClassInfo)getConstantInfo(index);
         return classInfo.getName();
     }
 
-    public String getUtf8(int index) throws Exception {
+    public String getUtf8(int index)  {
         ConstantUtf8Info utf8Info = (ConstantUtf8Info)getConstantInfo(index);
         return utf8Info.getValue();
     }

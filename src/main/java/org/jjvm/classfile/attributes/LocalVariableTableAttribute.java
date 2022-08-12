@@ -6,7 +6,7 @@ public class LocalVariableTableAttribute implements AttributeInfo {
     private LocalVariableTableEntry[] localVariableTable;
 
     @Override
-    public void readInfo(ClassReader classReader) throws Exception {
+    public void readInfo(ClassReader classReader)  {
         int localVariableTableLength = Short.toUnsignedInt(classReader.readUint16());
         localVariableTable = new LocalVariableTableEntry[localVariableTableLength];
         for (int i = 0; i < localVariableTableLength; i ++) {
