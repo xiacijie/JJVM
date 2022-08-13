@@ -19,37 +19,37 @@ public class OperandStack {
     }
 
     public void pushInt(int value) {
-        slots[next].num = value;
+        slots[next].bits = value;
         next++;
     }
 
     public int popInt() {
         next--;
-        return slots[next].num;
+        return slots[next].bits;
     }
 
     public void pushFloat(float value) {
         int bits = Float.floatToIntBits(value);
-        slots[next].num = bits;
+        slots[next].bits = bits;
         next++;
     }
 
     public float popFloat() {
         next--;
-        int bits = slots[next].num;
+        int bits = slots[next].bits;
         return Float.intBitsToFloat(bits);
     }
 
     public void pushLong(long value) {
-        slots[next].num = (int)value;
-        slots[next+1].num = (int)(value >> 32);
+        slots[next].bits = (int)value;
+        slots[next+1].bits = (int)(value >> 32);
         next += 2;
     }
 
     public long popLong() {
         next -= 2;
-        int low = (int)slots[next].num;
-        int high = (int)slots[next+1].num;
+        int low = (int)slots[next].bits;
+        int high = (int)slots[next+1].bits;
         return ((long)high << 32) | ((long)low & 0xFFFFFFFFL);
     }
 

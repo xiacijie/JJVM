@@ -566,7 +566,9 @@ public class Factory {
             // case 0xfe: impdep1
             // case 0xff: impdep2
             default:
-                JJException.throwException("Unsupported opcode: " + opcode);
+                JJException.throwException("Unsupported opcode: 0x" + Integer.toHexString(opcode));
             }
+            return null;
     } 
+
 }

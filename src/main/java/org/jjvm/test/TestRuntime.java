@@ -20,7 +20,7 @@ public class TestRuntime {
     }
 
     private static void startJVM(CMD cmd)  {
-        Frame frame = new Frame(100, 100);
+        Frame frame = new Frame(100, 100, null);
         testLocalVars(frame.localVars);
         testOperandStack(frame.operandStack);
     }

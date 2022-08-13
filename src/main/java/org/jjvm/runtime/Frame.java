@@ -7,10 +7,10 @@ public class Frame {
     public Thread thread;
     public int nextPC;
 
-    public Frame(int maxLocals, int maxStack)  {
+    public Frame(int maxLocals, int maxStack, Thread thread)  {
         localVars = new LocalVars(maxLocals);
         operandStack = new OperandStack(maxStack);
-        thread = new Thread();
+        this.thread = thread;
         nextPC = 0;
     }
 

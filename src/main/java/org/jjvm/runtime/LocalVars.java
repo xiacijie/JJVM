@@ -17,31 +17,31 @@ public class LocalVars {
     }
 
     public void setInt(int index, int value) {
-        slots[index].num = value;
+        slots[index].bits = value;
     }
 
     public int getInt(int index) {
-        return slots[index].num;
+        return slots[index].bits;
     }
 
     public void setFloat(int index, float value) {
         int bits = Float.floatToIntBits(value);
-        slots[index].num = bits;
+        slots[index].bits = bits;
     }
 
     public float getFloat(int index) {
-        int bits = slots[index].num;
+        int bits = slots[index].bits;
         return Float.intBitsToFloat(bits);
     }
 
     public void setLong(int index, long value) {
-        slots[index].num = (int)value;
-        slots[index+1].num = (int)(value >> 32);
+        slots[index].bits = (int)value;
+        slots[index+1].bits = (int)(value >> 32);
     }
 
     public long getLong(int index) {
-        int low = slots[index].num;
-        int high = slots[index + 1].num;
+        int low = slots[index].bits;
+        int high = slots[index + 1].bits;
         return ((long)high << 32) | ((long)low & 0xFFFFFFFFL);
     }
 

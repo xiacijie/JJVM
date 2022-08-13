@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch RunTest",
-            "request": "launch",
-            "mainClass": "org.jjvm.test.RunTest",
-            "projectName": "JJVM"
-        },
-        {
-            "type": "java",
             "name": "Launch TestRuntime",
             "request": "launch",
             "mainClass": "org.jjvm.test.TestRuntime",
@@ -46,6 +39,20 @@
                 "-Xjre",
                 "/usr/lib/jvm/java-8-openjdk-amd64/jre",
                 "java.lang.String"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Test Instructions",
+            "request": "launch",
+            "mainClass": "org.jjvm.test.TestInstructions",
+            "projectName": "JJVM",
+            "args": [
+                "-Xjre",
+                "/usr/lib/jvm/java-8-openjdk-amd64/jre",
+                "-cp",
+                "/home/xiacijie/Project/JJVM/samples/jre/lib",
+                "TestInstruction"
             ]
         }
     ]

@@ -15,7 +15,7 @@ public class Interpreter {
         int maxStack = codeAttribute.getMaxStack();
         byte[] code = codeAttribute.getCode();
         Thread thread = new Thread();
-        Frame frame = new Frame(maxLocals, maxStack);
+        Frame frame = new Frame(maxLocals, maxStack, thread);
         thread.pushFrame(frame);
         loop(thread, code);
     }
@@ -37,4 +37,5 @@ public class Interpreter {
             instruction.execute(frame);
         }
     }
+
 }
