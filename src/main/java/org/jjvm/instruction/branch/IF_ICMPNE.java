@@ -12,9 +12,6 @@ public class IF_ICMPNE extends BranchInstruction {
         int v2 = stack.popInt();
         int v1 = stack.popInt();
         
-        System.out.println(v1);
-        System.out.println(v2);
-        
         if (v1 != v2) {
 
             frame.branch(offset);
