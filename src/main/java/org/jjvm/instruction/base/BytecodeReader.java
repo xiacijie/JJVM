@@ -22,7 +22,7 @@ public class BytecodeReader {
     public short readUint16() {
         byte byte1 = readUint8();
         byte byte2 = readUint8();
-        return (short) ((byte1 << 8) | byte2);
+        return (short)(((byte1 & 0xFF) << 8) | (byte2 & 0xFF));
     }
 
     public short readInt16() {
@@ -34,8 +34,8 @@ public class BytecodeReader {
         byte byte2 = readUint8();
         byte byte3 = readUint8();
         byte byte4 = readUint8();
-
-        return (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+        
+        return ((0xFF & byte1) << 24) | ((0xFF & byte2) << 16) | ((0xFF & byte3) << 8) | (0xFF & byte4);
     }
 
     public int[] readInt32s(int n) {

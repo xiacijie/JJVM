@@ -5,11 +5,11 @@ import org.jjvm.instruction.base.BytecodeReader;
 import org.jjvm.runtime.Frame;
 
 public class BIPUSH implements Instruction {
-    private byte value;
+    private int value;
 
     @Override
     public void fetchOperands(BytecodeReader reader) {
-        value = reader.readInt8();
+        value = (int)reader.readInt8();
     }
 
     @Override
