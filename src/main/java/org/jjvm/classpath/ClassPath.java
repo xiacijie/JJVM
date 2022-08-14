@@ -7,7 +7,6 @@ import org.jjvm.classpath.entry.WildcardEntry;
 import org.jjvm.exception.JJException;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Paths;
 
 public class ClassPath {

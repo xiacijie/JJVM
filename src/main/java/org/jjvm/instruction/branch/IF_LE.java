@@ -1,7 +1,5 @@
 package org.jjvm.instruction.branch;
 
-import javax.swing.text.AbstractDocument.BranchElement;
-
 import org.jjvm.instruction.BranchInstruction;
 import org.jjvm.runtime.Frame;
 

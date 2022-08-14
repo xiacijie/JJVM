@@ -3,8 +3,6 @@ package org.jjvm.classfile;
 import org.jjvm.classfile.attributes.AttributeInfo;
 import org.jjvm.exception.JJException;
 
-import java.io.IOException;
-
 public class ClassFile {
     public long magic;
     public int minorVersion;

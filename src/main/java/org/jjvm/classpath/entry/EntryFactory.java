@@ -1,7 +1,6 @@
 package org.jjvm.classpath.entry;
 
 import java.io.File;
-import java.io.IOException;
 
 public class EntryFactory {
     static public Entry create(String path)  {

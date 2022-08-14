@@ -1,7 +1,5 @@
 package org.jjvm.test;
 
-import java.io.IOException;
-
 import org.jjvm.classfile.ClassFile;
 import org.jjvm.classfile.MemberInfo;
 import org.jjvm.classpath.ClassPath;
