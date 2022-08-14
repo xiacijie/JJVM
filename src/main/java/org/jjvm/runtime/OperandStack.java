@@ -1,6 +1,7 @@
 package org.jjvm.runtime;
 
 import org.jjvm.exception.JJException;
+import org.jjvm.runtime.heap.JJObject;
 
 public class OperandStack {
     private int next;
@@ -63,14 +64,14 @@ public class OperandStack {
         return Double.longBitsToDouble(bits);
     }
 
-    public void pushRef(Object ref) {
+    public void pushRef(JJObject ref) {
         slots[next].ref = ref;
         next++;
     }
 
-    public Object popRef() {
+    public JJObject popRef() {
         next--;
-        Object ref = slots[next].ref;
+        JJObject ref = slots[next].ref;
         slots[next].ref = null;
         return ref;
     }

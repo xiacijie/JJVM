@@ -1,15 +1,15 @@
 package org.jjvm.classfile.constants;
 
 import org.jjvm.classfile.ClassReader;
-import org.jjvm.classfile.ConstantPool;
+import org.jjvm.classfile.ClassFileConstantPool;
 import org.jjvm.util.Tuple;
 
 public class ConstantMemberrefInfo implements ConstantInfo {
-    private ConstantPool constantPool;
+    private ClassFileConstantPool constantPool;
     private int classIndex;
     private int nameAndTypeIndex;
 
-    public ConstantMemberrefInfo(ConstantPool constantPool) {
+    public ConstantMemberrefInfo(ClassFileConstantPool constantPool) {
         this.constantPool = constantPool;
     }
 

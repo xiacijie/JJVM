@@ -9,7 +9,7 @@ import org.jjvm.classfile.constants.ConstantUtf8Info;
 import org.jjvm.exception.JJException;
 import org.jjvm.util.Tuple;
 
-public class ConstantPool {
+public class ClassFileConstantPool {
     
     private ConstantInfo[] constantInfos;
 

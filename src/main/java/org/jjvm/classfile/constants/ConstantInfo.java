@@ -1,20 +1,20 @@
 package org.jjvm.classfile.constants;
 
 import org.jjvm.classfile.ClassReader;
-import org.jjvm.classfile.ConstantPool;
+import org.jjvm.classfile.ClassFileConstantPool;
 import org.jjvm.exception.JJException;
 
 public interface ConstantInfo {
     public void readInfo(ClassReader classReader);
 
-    static public ConstantInfo readConstantInfo(ClassReader classReader, ConstantPool constantPool)  {
+    static public ConstantInfo readConstantInfo(ClassReader classReader, ClassFileConstantPool constantPool)  {
         int tag = Byte.toUnsignedInt(classReader.readUint8());
         ConstantInfo constantInfo = newConstantInfo(tag, constantPool);
         constantInfo.readInfo(classReader);
         return constantInfo;
     }
 
-    static public ConstantInfo newConstantInfo(int tag, ConstantPool constantPool)  {
+    static public ConstantInfo newConstantInfo(int tag, ClassFileConstantPool constantPool)  {
         switch (tag) {
             case ConstantTag.CONSTANT_Integer:
                 return new ConstantIntegerInfo();

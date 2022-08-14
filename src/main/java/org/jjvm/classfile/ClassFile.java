@@ -7,7 +7,7 @@ public class ClassFile {
     public long magic;
     public int minorVersion;
     public int majorVersion;
-    public ConstantPool constantPool;
+    public ClassFileConstantPool constantPool;
     public int accessFlags;
     public int thisClass;
     public int superClass;
@@ -48,7 +48,7 @@ public class ClassFile {
     private void read(ClassReader classReader)  {
         readAndCheckMagic(classReader);
         readAndCheckVersion(classReader);
-        constantPool = new ConstantPool();
+        constantPool = new ClassFileConstantPool();
         constantPool.readConstantPool(classReader);
         accessFlags = Short.toUnsignedInt(classReader.readUint16());
         thisClass = Short.toUnsignedInt(classReader.readUint16());

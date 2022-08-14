@@ -6,7 +6,7 @@ import org.jjvm.instruction.Factory;
 import org.jjvm.instruction.Instruction;
 import org.jjvm.instruction.base.BytecodeReader;
 import org.jjvm.runtime.Frame;
-import org.jjvm.runtime.Thread;
+import org.jjvm.runtime.JJThread;
 
 public class Interpreter {
     public void interpret(MemberInfo methodInfo) {
@@ -14,13 +14,13 @@ public class Interpreter {
         int maxLocals = codeAttribute.getMaxLocals();
         int maxStack = codeAttribute.getMaxStack();
         byte[] code = codeAttribute.getCode();
-        Thread thread = new Thread();
+        JJThread thread = new JJThread();
         Frame frame = new Frame(maxLocals, maxStack, thread);
         thread.pushFrame(frame);
         loop(thread, code);
     }
 
-    public void loop(Thread thread, byte[] code) {
+    public void loop(JJThread thread, byte[] code) {
         Frame frame = thread.popFrame();
         BytecodeReader reader = new BytecodeReader();
         while (true) {

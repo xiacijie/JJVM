@@ -1,10 +1,10 @@
 package org.jjvm.classfile.constants;
 
-import org.jjvm.classfile.ConstantPool;
+import org.jjvm.classfile.ClassFileConstantPool;
 
 public class ConstantFieldrefInfo extends ConstantMemberrefInfo {
 
-    public ConstantFieldrefInfo(ConstantPool constantPool) {
+    public ConstantFieldrefInfo(ClassFileConstantPool constantPool) {
         super(constantPool);
     }   
 }

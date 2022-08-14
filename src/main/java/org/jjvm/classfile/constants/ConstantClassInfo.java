@@ -1,13 +1,13 @@
 package org.jjvm.classfile.constants;
 
 import org.jjvm.classfile.ClassReader;
-import org.jjvm.classfile.ConstantPool;
+import org.jjvm.classfile.ClassFileConstantPool;
 
 public class ConstantClassInfo implements ConstantInfo {
-    private ConstantPool constantPool;
+    private ClassFileConstantPool constantPool;
     private int nameIndex;
 
-    public ConstantClassInfo(ConstantPool constantPool) {
+    public ConstantClassInfo(ClassFileConstantPool constantPool) {
         this.constantPool = constantPool;
     }
 

@@ -1,10 +1,10 @@
 package org.jjvm.runtime;
 
-public class Thread {
+public class JJThread {
     public int pc;
     public Stack stack;
 
-    public Thread() {
+    public JJThread() {
         stack = new Stack(1024);
         pc = 0;
     }

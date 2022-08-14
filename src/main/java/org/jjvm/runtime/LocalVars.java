@@ -1,6 +1,7 @@
 package org.jjvm.runtime;
 
 import org.jjvm.exception.JJException;
+import org.jjvm.runtime.heap.JJObject;
 
 public class LocalVars {
     private Slot[] slots;
@@ -55,11 +56,11 @@ public class LocalVars {
         return Double.longBitsToDouble(bits);
     }
 
-    public void setRef(int index, Object ref) {
+    public void setRef(int index, JJObject ref) {
         slots[index].ref = ref;
     }
 
-    public Object getRef(int index) {
+    public JJObject getRef(int index) {
         return slots[index].ref;
     }
 

@@ -4,7 +4,7 @@ import org.jjvm.classfile.attributes.AttributeInfo;
 import org.jjvm.classfile.attributes.CodeAttribute;
 
 public class MemberInfo {
-    public ConstantPool constantPool;
+    public ClassFileConstantPool constantPool;
     public short accessFlags;
     public short nameIndex;
     public short descriptorIndex;
@@ -29,7 +29,7 @@ public class MemberInfo {
         return null;
     }
 
-    static public MemberInfo[] readMembers(ClassReader classReader, ConstantPool constantPool)  {
+    static public MemberInfo[] readMembers(ClassReader classReader, ClassFileConstantPool constantPool)  {
         int memberCount = Short.toUnsignedInt(classReader.readUint16());
         MemberInfo[] members = new MemberInfo[memberCount];
         for (int i = 0; i < memberCount; i ++) {
@@ -38,7 +38,7 @@ public class MemberInfo {
         return members;
     }
 
-    static public MemberInfo readMember(ClassReader classReader, ConstantPool constantPool)  {
+    static public MemberInfo readMember(ClassReader classReader, ClassFileConstantPool constantPool)  {
         MemberInfo member = new MemberInfo();
         member.constantPool = constantPool;
         member.accessFlags = classReader.readUint16();

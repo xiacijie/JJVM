@@ -1,18 +1,18 @@
 package org.jjvm.classfile.attributes;
 
 import org.jjvm.classfile.ClassReader;
-import org.jjvm.classfile.ConstantPool;
+import org.jjvm.classfile.ClassFileConstantPool;
 import org.jjvm.exception.JJException;
 
 public class CodeAttribute implements AttributeInfo {
-    private final ConstantPool constantPool;
+    private final ClassFileConstantPool constantPool;
     private int maxStack;
     private int maxLocals;
     private byte[] code;
     private ExceptionTableEntry[] exceptionTable;
     private AttributeInfo[] attributes;
 
-    public CodeAttribute(ConstantPool constantPool) {
+    public CodeAttribute(ClassFileConstantPool constantPool) {
         this.constantPool =  constantPool;
     }
 

@@ -1,13 +1,13 @@
 package org.jjvm.classfile.attributes;
 
 import org.jjvm.classfile.ClassReader;
-import org.jjvm.classfile.ConstantPool;
+import org.jjvm.classfile.ClassFileConstantPool;
 
 public class SourceFileAttribute implements AttributeInfo {
-    private final ConstantPool constantPool;
+    private final ClassFileConstantPool constantPool;
     private int sourceFileIndex;
 
-    public SourceFileAttribute(ConstantPool constantPool) {
+    public SourceFileAttribute(ClassFileConstantPool constantPool) {
         this.constantPool = constantPool;
     }
 
