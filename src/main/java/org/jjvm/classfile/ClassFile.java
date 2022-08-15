@@ -8,10 +8,10 @@ public class ClassFile {
     public int minorVersion;
     public int majorVersion;
     public ClassFileConstantPool constantPool;
-    public int accessFlags;
-    public int thisClass;
-    public int superClass;
-    public int[] interfaces;
+    public short accessFlags;
+    public short thisClass;
+    public short superClass;
+    public short[] interfaces;
     public MemberInfo[] fields;
     public MemberInfo[] methods;
     public AttributeInfo[] attributes;
@@ -50,13 +50,13 @@ public class ClassFile {
         readAndCheckVersion(classReader);
         constantPool = new ClassFileConstantPool();
         constantPool.readConstantPool(classReader);
-        accessFlags = Short.toUnsignedInt(classReader.readUint16());
-        thisClass = Short.toUnsignedInt(classReader.readUint16());
-        superClass = Short.toUnsignedInt(classReader.readUint16());
+        accessFlags = classReader.readUint16();
+        thisClass = classReader.readUint16();
+        superClass = classReader.readUint16();
         short[] interfaces_shorts = classReader.readUint16s();
-        interfaces = new int[interfaces_shorts.length];
+        interfaces = new short[interfaces_shorts.length];
         for (int i = 0; i < interfaces_shorts.length; i ++) {
-            interfaces[i] = Short.toUnsignedInt(interfaces_shorts[i]);
+            interfaces[i] = interfaces_shorts[i];
         }
 
         fields = MemberInfo.readMembers(classReader, constantPool);
